@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Maple Times</title>
+
+        <!-- frankenstyle -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/frankenstyle@0.3.7/dist/css/frankenstyle-kit.min.css"
+        />
+        <link rel="stylesheet" href="/assets/theme.css" />
+        <style>
+            .crop {
+                width: 100%;
+                max-width: 100%;
+                height: 300px;
+                overflow: hidden;
+            }
+
+            .crop img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        </style>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/frankenstyle@0.3.7/dist/js/hwc-core.iife.js"
+            type="module"
+        ></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    </head>
+
+    <body class="bg color" style="--bg: var(--uk-bg); --color: var(--uk-bg-f)">
+        <div class="p-5">
+            <div
+                class="uk-card uk-card-body flex flex-row items-center justify-center gap-6 text-left w-fit mx-auto"
+                style="
+                    border: 0.5px solid var(--uk-border);
+                    position: relative;
+                    overflow: visible;
+                "
+            >
+                <div>
+                    <h1 class="uk-h1" style="margin: 0">Maple Times</h1>
+                    <p class="uk-p" style="margin: 0; max-width: 250px">
+                        An <i><strong>Air Canada PTFS</strong></i> magazine
+                        collection.
+                    </p>
+                </div>
+
+                <img
+                    src="assets/logo.png"
+                    width="120"
+                    style="display: block"
+                    alt="Maple Times Logo"
+                />
+            </div>
+
+            <div
+                class="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-3 gap-4 pt-5"
+            >
+                <div
+                    class="uk-card uk-card-body hover:shadow-lg cursor-pointer flex flex-col"
+                    data-uk-toggle="target: #my-id"
+                >
+                    <div class="uk-modal" id="my-id" data-uk-modal>
+                        <div class="uk-modal-dialog uk-modal-body">
+                            <h2 class="uk-h2">Read the Magazine</h2>
+
+                            <button
+                                class="uk-modal-close absolute right-4 top-4"
+                                type="button"
+                                data-uk-close
+                            ></button>
+
+                            <iframe
+                                src="assets/example.pdf"
+                                class="w-full h-[80vh]"
+                            ></iframe>
+                        </div>
+                    </div>
+
+                    <div class="crop">
+                        <img src="assets/example.jpeg" />
+                    </div>
+                    <h1 class="uk-h1 text-left mt-5" style="text-align: left">
+                        Issue #1
+                    </h1>
+                    <h5 class="uk-h5 text-left mt-2">Of 2026</h5>
+                    <p class="uk-p mt-2 text-right">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Fusce venenatis mi eu odio ultrices, maximus semper mi
+                        maximus.
+                    </p>
+                </div>
+
+                <div
+                    class="uk-card uk-card-body hover:shadow-lg cursor-pointer flex flex-col"
+                    data-uk-toggle="target: #my-id"
+                >
+                    <div class="uk-modal" id="my-id" data-uk-modal>
+                        <div class="uk-modal-dialog uk-modal-body">
+                            <h2 class="uk-h2">Read the Magazine</h2>
+
+                            <button
+                                class="uk-modal-close absolute right-4 top-4"
+                                type="button"
+                                data-uk-close
+                            ></button>
+
+                            <iframe
+                                src="assets/example.pdf"
+                                class="w-full h-[80vh]"
+                            ></iframe>
+                        </div>
+                    </div>
+
+                    <div class="crop">
+                        <img src="assets/example.jpeg" />
+                    </div>
+                    <h1 class="uk-h1 text-left mt-5" style="text-align: left">
+                        Issue #2
+                    </h1>
+                    <h5 class="uk-h5 text-left mt-2">Of 2026</h5>
+                    <p class="uk-p mt-2 text-right">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Fusce venenatis mi eu odio ultrices, maximus semper mi
+                        maximus.
+                    </p>
+                </div>
+
+                <div
+                    class="uk-card uk-card-body hover:shadow-lg cursor-pointer flex flex-col"
+                    data-uk-toggle="target: #my-id"
+                >
+                    <div class="uk-modal" id="my-id" data-uk-modal>
+                        <div class="uk-modal-dialog uk-modal-body">
+                            <h2 class="uk-h2">Read the Magazine</h2>
+
+                            <button
+                                class="uk-modal-close absolute right-4 top-4"
+                                type="button"
+                                data-uk-close
+                            ></button>
+
+                            <iframe
+                                src="assets/example.pdf"
+                                class="w-full h-[80vh]"
+                            ></iframe>
+                        </div>
+                    </div>
+
+                    <div class="crop">
+                        <img src="assets/example.jpeg" />
+                    </div>
+                    <h1 class="uk-h1 text-left mt-5" style="text-align: left">
+                        Issue #3
+                    </h1>
+                    <h5 class="uk-h5 text-left mt-2">Of 2026</h5>
+                    <p class="uk-p mt-2 text-right">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Fusce venenatis mi eu odio ultrices, maximus semper mi
+                        maximus.
+                    </p>
+                </div>
+
+                <div
+                    class="uk-card uk-card-body hover:shadow-lg cursor-pointer flex flex-col"
+                    data-uk-toggle="target: #my-id"
+                >
+                    <div class="uk-modal" id="my-id" data-uk-modal>
+                        <div class="uk-modal-dialog uk-modal-body">
+                            <h2 class="uk-h2">Read the Magazine</h2>
+
+                            <button
+                                class="uk-modal-close absolute right-4 top-4"
+                                type="button"
+                                data-uk-close
+                            ></button>
+
+                            <iframe
+                                src="assets/example.pdf"
+                                class="w-full h-[80vh]"
+                            ></iframe>
+                        </div>
+                    </div>
+
+                    <div class="crop">
+                        <img src="assets/example.jpeg" />
+                    </div>
+                    <h1 class="uk-h1 text-left mt-5" style="text-align: left">
+                        Issue #4
+                    </h1>
+                    <h5 class="uk-h5 text-left mt-2">Of 2026</h5>
+                    <p class="uk-p mt-2 text-right">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Fusce venenatis mi eu odio ultrices, maximus semper mi
+                        maximus.
+                    </p>
+                </div>
+
+                <div
+                    class="uk-card uk-card-body hover:shadow-lg cursor-pointer flex flex-col"
+                    data-uk-toggle="target: #my-id"
+                >
+                    <div class="uk-modal" id="my-id" data-uk-modal>
+                        <div class="uk-modal-dialog uk-modal-body">
+                            <h2 class="uk-h2">Read the Magazine</h2>
+
+                            <button
+                                class="uk-modal-close absolute right-4 top-4"
+                                type="button"
+                                data-uk-close
+                            ></button>
+
+                            <iframe
+                                src="assets/example.pdf"
+                                class="w-full h-[80vh]"
+                            ></iframe>
+                        </div>
+                    </div>
+
+                    <div class="crop">
+                        <img src="assets/example.jpeg" />
+                    </div>
+                    <h1 class="uk-h1 text-left mt-5" style="text-align: left">
+                        Issue #5
+                    </h1>
+                    <h5 class="uk-h5 text-left mt-2">Of 2026</h5>
+                    <p class="uk-p mt-2 text-right">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Fusce venenatis mi eu odio ultrices, maximus semper mi
+                        maximus.
+                    </p>
+                </div>
+                <div
+                    class="uk-card uk-card-body hover:shadow-lg cursor-pointer flex flex-col"
+                    data-uk-toggle="target: #my-id"
+                >
+                    <div class="uk-modal" id="my-id" data-uk-modal>
+                        <div class="uk-modal-dialog uk-modal-body">
+                            <h2 class="uk-h2">Read the Magazine</h2>
+
+                            <button
+                                class="uk-modal-close absolute right-4 top-4"
+                                type="button"
+                                data-uk-close
+                            ></button>
+
+                            <iframe
+                                src="assets/example.pdf"
+                                class="w-full h-[80vh]"
+                            ></iframe>
+                        </div>
+                    </div>
+
+                    <div class="crop">
+                        <img src="assets/example.jpeg" />
+                    </div>
+                    <h1 class="uk-h1 text-left mt-5" style="text-align: left">
+                        Issue #6
+                    </h1>
+                    <h5 class="uk-h5 text-left mt-2">Of 2026</h5>
+                    <p class="uk-p mt-2 text-right">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Fusce venenatis mi eu odio ultrices, maximus semper mi
+                        maximus.
+                    </p>
+                </div>
+                <div
+                    class="uk-card uk-card-body hover:shadow-lg cursor-pointer flex flex-col"
+                    data-uk-toggle="target: #my-id"
+                >
+                    <div class="uk-modal" id="my-id" data-uk-modal>
+                        <div class="uk-modal-dialog uk-modal-body">
+                            <h2 class="uk-h2">Read the Magazine</h2>
+
+                            <button
+                                class="uk-modal-close absolute right-4 top-4"
+                                type="button"
+                                data-uk-close
+                            ></button>
+
+                            <iframe
+                                src="assets/example.pdf"
+                                class="w-full h-[80vh]"
+                            ></iframe>
+                        </div>
+                    </div>
+
+                    <div class="crop">
+                        <img src="assets/example.jpeg" />
+                    </div>
+                    <h1 class="uk-h1 text-left mt-5" style="text-align: left">
+                        Issue #7
+                    </h1>
+                    <h5 class="uk-h5 text-left mt-2">Of 2026</h5>
+                    <p class="uk-p mt-2 text-right">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Fusce venenatis mi eu odio ultrices, maximus semper mi
+                        maximus.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            window.Lucide = {};
+            window.ApexCharts = {};
+        </script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/frankenstyle@0.3.7/dist/js/hwc-icon.iife.js"
+            type="module"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/frankenstyle@0.3.7/dist/js/hwc-components.iife.js"
+            type="module"
+        ></script>
+
+        <!-- Theme Toggle -->
+        <!--
+        <script>
+            const btn = document.getElementById("themeBtn");
+            const icon = document.getElementById("themeIcn");
+
+            let isLight = localStorage.getItem("theme") === "light";
+
+            function applyTheme() {
+                document.documentElement.classList.toggle("dark", !isLight);
+                icon.setAttribute("icon", isLight ? "sun" : "moon");
+                localStorage.setItem("theme", isLight ? "light" : "dark");
+            }
+
+            applyTheme();
+
+            btn.addEventListener("click", () => {
+                isLight = !isLight;
+                applyTheme();
+            });
+        </script>
+        -->
+    </body>
+</html>
