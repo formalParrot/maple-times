@@ -10,7 +10,8 @@
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/frankenstyle@0.3.7/dist/css/frankenstyle-kit.min.css"
         />
-        <link rel="stylesheet" href="/assets/theme.css" />
+
+        <link rel="stylesheet" href="" id="themes" />
         <link
             rel="stylesheet"
             href="https://raw.githubusercontent.com/formalParrot/maple-times/refs/heads/main/assets/theme.css"
@@ -400,6 +401,16 @@
                 isLight = !isLight;
                 applyTheme();
             });
+        </script>
+
+        <script>
+            const link = document.getElementById("themes");
+
+            if (window.location.hostname.includes("github.io")) {
+                link.href = "/maple-times/assets/theme.css";
+            } else {
+                link.href = "./assets/theme.css";
+            }
         </script>
     </body>
 </html>
