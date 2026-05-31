@@ -11,6 +11,10 @@
             href="https://cdn.jsdelivr.net/npm/frankenstyle@0.3.7/dist/css/frankenstyle-kit.min.css"
         />
         <link rel="stylesheet" href="/assets/theme.css" />
+        <link
+            rel="stylesheet"
+            href="https://raw.githubusercontent.com/formalParrot/maple-times/refs/heads/main/assets/theme.css"
+        />
         <style>
             .crop {
                 width: 100%;
@@ -58,6 +62,30 @@
                     style="display: block"
                     alt="Maple Times Logo"
                 />
+
+                <button
+                    id="themeBtn"
+                    class="uk-button uk-button-default uk-button-xsmall"
+                    style="
+                        --bg: var(--uk-secondary);
+                        --color: var(--uk-secondary-f);
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                        border: 1px solid var(--uk-border);
+                    "
+                >
+                    <uk-icon
+                        id="themeIcn"
+                        class="size"
+                        style="
+                            --size: 4;
+                            --bg: var(--uk-secondary);
+                            --color: var(--uk-secondary-f);
+                        "
+                        icon="sun"
+                    ></uk-icon>
+                </button>
             </div>
 
             <div
@@ -65,10 +93,14 @@
             >
                 <div
                     class="uk-card uk-card-body hover:shadow-lg cursor-pointer flex flex-col"
+                    style="border: 0.5px solid var(--uk-border)"
                     data-uk-toggle="target: #my-id"
                 >
                     <div class="uk-modal" id="my-id" data-uk-modal>
-                        <div class="uk-modal-dialog uk-modal-body">
+                        <div
+                            class="uk-modal-dialog uk-modal-body"
+                            style="border: 0.5px solid var(--uk-border)"
+                        >
                             <h2 class="uk-h2">Read the Magazine</h2>
 
                             <button
@@ -79,7 +111,7 @@
 
                             <iframe
                                 src="assets/example.pdf"
-                                class="w-full h-[80vh]"
+                                class="w-full h-[80vh] mt-10"
                             ></iframe>
                         </div>
                     </div>
@@ -100,10 +132,14 @@
 
                 <div
                     class="uk-card uk-card-body hover:shadow-lg cursor-pointer flex flex-col"
+                    style="border: 0.5px solid var(--uk-border)"
                     data-uk-toggle="target: #my-id"
                 >
                     <div class="uk-modal" id="my-id" data-uk-modal>
-                        <div class="uk-modal-dialog uk-modal-body">
+                        <div
+                            class="uk-modal-dialog uk-modal-body"
+                            style="border: 0.5px solid var(--uk-border)"
+                        >
                             <h2 class="uk-h2">Read the Magazine</h2>
 
                             <button
@@ -114,7 +150,7 @@
 
                             <iframe
                                 src="assets/example.pdf"
-                                class="w-full h-[80vh]"
+                                class="w-full h-[80vh] mt-10"
                             ></iframe>
                         </div>
                     </div>
@@ -135,10 +171,14 @@
 
                 <div
                     class="uk-card uk-card-body hover:shadow-lg cursor-pointer flex flex-col"
+                    style="border: 0.5px solid var(--uk-border)"
                     data-uk-toggle="target: #my-id"
                 >
                     <div class="uk-modal" id="my-id" data-uk-modal>
-                        <div class="uk-modal-dialog uk-modal-body">
+                        <div
+                            class="uk-modal-dialog uk-modal-body"
+                            style="border: 0.5px solid var(--uk-border)"
+                        >
                             <h2 class="uk-h2">Read the Magazine</h2>
 
                             <button
@@ -149,7 +189,7 @@
 
                             <iframe
                                 src="assets/example.pdf"
-                                class="w-full h-[80vh]"
+                                class="w-full h-[80vh] mt-10"
                             ></iframe>
                         </div>
                     </div>
@@ -170,10 +210,14 @@
 
                 <div
                     class="uk-card uk-card-body hover:shadow-lg cursor-pointer flex flex-col"
+                    style="border: 0.5px solid var(--uk-border)"
                     data-uk-toggle="target: #my-id"
                 >
                     <div class="uk-modal" id="my-id" data-uk-modal>
-                        <div class="uk-modal-dialog uk-modal-body">
+                        <div
+                            class="uk-modal-dialog uk-modal-body"
+                            style="border: 0.5px solid var(--uk-border)"
+                        >
                             <h2 class="uk-h2">Read the Magazine</h2>
 
                             <button
@@ -184,7 +228,7 @@
 
                             <iframe
                                 src="assets/example.pdf"
-                                class="w-full h-[80vh]"
+                                class="w-full h-[80vh] mt-10"
                             ></iframe>
                         </div>
                     </div>
@@ -205,10 +249,14 @@
 
                 <div
                     class="uk-card uk-card-body hover:shadow-lg cursor-pointer flex flex-col"
+                    style="border: 0.5px solid var(--uk-border)"
                     data-uk-toggle="target: #my-id"
                 >
                     <div class="uk-modal" id="my-id" data-uk-modal>
-                        <div class="uk-modal-dialog uk-modal-body">
+                        <div
+                            class="uk-modal-dialog uk-modal-body"
+                            style="border: 0.5px solid var(--uk-border)"
+                        >
                             <h2 class="uk-h2">Read the Magazine</h2>
 
                             <button
@@ -219,7 +267,7 @@
 
                             <iframe
                                 src="assets/example.pdf"
-                                class="w-full h-[80vh]"
+                                class="w-full h-[80vh] mt-10"
                             ></iframe>
                         </div>
                     </div>
@@ -237,12 +285,17 @@
                         maximus.
                     </p>
                 </div>
+
                 <div
                     class="uk-card uk-card-body hover:shadow-lg cursor-pointer flex flex-col"
+                    style="border: 0.5px solid var(--uk-border)"
                     data-uk-toggle="target: #my-id"
                 >
                     <div class="uk-modal" id="my-id" data-uk-modal>
-                        <div class="uk-modal-dialog uk-modal-body">
+                        <div
+                            class="uk-modal-dialog uk-modal-body"
+                            style="border: 0.5px solid var(--uk-border)"
+                        >
                             <h2 class="uk-h2">Read the Magazine</h2>
 
                             <button
@@ -253,7 +306,7 @@
 
                             <iframe
                                 src="assets/example.pdf"
-                                class="w-full h-[80vh]"
+                                class="w-full h-[80vh] mt-10"
                             ></iframe>
                         </div>
                     </div>
@@ -271,12 +324,17 @@
                         maximus.
                     </p>
                 </div>
+
                 <div
                     class="uk-card uk-card-body hover:shadow-lg cursor-pointer flex flex-col"
+                    style="border: 0.5px solid var(--uk-border)"
                     data-uk-toggle="target: #my-id"
                 >
                     <div class="uk-modal" id="my-id" data-uk-modal>
-                        <div class="uk-modal-dialog uk-modal-body">
+                        <div
+                            class="uk-modal-dialog uk-modal-body"
+                            style="border: 0.5px solid var(--uk-border)"
+                        >
                             <h2 class="uk-h2">Read the Magazine</h2>
 
                             <button
@@ -287,7 +345,7 @@
 
                             <iframe
                                 src="assets/example.pdf"
-                                class="w-full h-[80vh]"
+                                class="w-full h-[80vh] mt-10"
                             ></iframe>
                         </div>
                     </div>
@@ -324,7 +382,6 @@
         ></script>
 
         <!-- Theme Toggle -->
-        <!--
         <script>
             const btn = document.getElementById("themeBtn");
             const icon = document.getElementById("themeIcn");
@@ -344,6 +401,5 @@
                 applyTheme();
             });
         </script>
-        -->
     </body>
 </html>
