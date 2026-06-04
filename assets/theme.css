@@ -1,56 +1,43 @@
 :root {
-    /* Glowing Autumn Amber Backgrounds */
-    --uk-bg: oklch(93% 0.06 70); /* Soft, warm liquid amber glow */
-    --uk-bg-f: oklch(12% 0.05 25); /* Deep molten bark text */
+    --uk-bg: oklch(95% 0.01 90);
+    --uk-bg-f: oklch(10% 0.01 90);
+    --uk-card: oklch(92% 0.01 90);
+    --uk-card-f: oklch(10% 0.01 90);
+    --uk-drop: oklch(93% 0.01 90);
+    --uk-drop-f: oklch(10% 0.01 90);
 
-    --uk-card: oklch(88% 0.11 68); /* Rich golden-orange leaf card */
-    --uk-card-f: oklch(12% 0.05 25);
+    /* slightly richer chroma, warmer white foreground */
+    --uk-primary: oklch(52% 0.16 242.749);
+    --uk-primary-f: oklch(99% 0.005 242);
 
-    --uk-drop: oklch(90% 0.09 68); /* Warm pumpkin drop layer */
-    --uk-drop-f: oklch(12% 0.05 25);
+    --uk-secondary: oklch(68% 0.012 90);
+    --uk-secondary-o: 12%;
+    --uk-secondary-f: oklch(22% 0.01 90);
 
-    /* Bright Glowing Maple Orange */
-    --uk-primary: oklch(68% 0.24 48); /* Neon autumn leaf orange */
-    --uk-primary-f: oklch(99% 0.02 60); /* Stark white with warm reflection */
+    --uk-muted: oklch(72% 0.01 90);
+    --uk-muted-o: 7%;
+    --uk-muted-f: oklch(42% 0.01 90);
 
-    /* Crimson Leaf Vein */
-    --uk-secondary: oklch(50% 0.22 28); /* Deep vibrant maple red */
-    --uk-secondary-o: 15%;
-    --uk-secondary-f: oklch(98% 0.01 40);
+    /* accent now has a tinted foreground instead of dark gray */
+    --uk-accent: oklch(57% 0.19 48.998);
+    --uk-accent-o: 8%;
+    --uk-accent-f: oklch(98% 0.008 48);
 
-    /* Golden Moss */
-    --uk-muted: oklch(80% 0.14 75); /* Saturated yellow-gold harvest tint */
-    --uk-muted-o: 10%;
-    --uk-muted-f: oklch(35% 0.12 50);
+    /* semantic fg is now near-white with a color hint, not flat gray */
+    --uk-danger: oklch(61% 0.23 25);
+    --uk-danger-f: oklch(98% 0.01 25);
+    --uk-success: oklch(68% 0.16 160);
+    --uk-success-f: oklch(98% 0.01 160);
+    --uk-warning: oklch(76% 0.19 72);
+    --uk-warning-f: oklch(20% 0.04 72); /* dark on yellow — intentional */
+    --uk-info: oklch(60% 0.21 258);
+    --uk-info-f: oklch(98% 0.01 258);
 
-    /* Electric Crimson Accent */
-    --uk-accent: oklch(56% 0.25 32); /* Ultra-bright burning crimson */
-    --uk-accent-o: 12%;
-    --uk-accent-f: oklch(99% 0.01 32);
-
-    /* System Alerts shifted to match the heat */
-    --uk-danger: oklch(52% 0.26 22); /* Fiery blood red */
-    --uk-danger-f: oklch(98% 0.01 22);
-
-    --uk-success: oklch(
-        68% 0.18 135
-    ); /* Vibrant chartreuse/bright leaf green */
-    --uk-success-f: oklch(15% 0.05 135);
-
-    --uk-warning: oklch(82% 0.21 82); /* Neon yellow squash */
-    --uk-warning-f: oklch(20% 0.06 82);
-
-    --uk-info: oklch(65% 0.18 220); /* Electric October sky blue */
-    --uk-info-f: oklch(98% 0.01 220);
-
-    /* Saturated Borders & Inputs */
-    --uk-border: oklch(76% 0.14 65);
-    --uk-border-o: 80%;
-
-    --uk-input: oklch(76% 0.14 65);
-    --uk-input-o: 80%;
-
-    --uk-focus: oklch(68% 0.24 48 / 0.5); /* Glowing orange focus halo */
+    --uk-border: oklch(83% 0.012 90);
+    --uk-border-o: 65%;
+    --uk-input: oklch(83% 0.012 90);
+    --uk-input-o: 65%;
+    --uk-focus: oklch(52% 0.16 242.749 / 0.35);
 }
 
 html.dark {
@@ -58,13 +45,13 @@ html.dark {
     --uk-bg: oklch(
         13% 0.03 24
     ); /* Charcoal with a deep burning red undertone */
-    --uk-bg-f: oklch(94% 0.06 65); /* Bright glowing amber text */
+    --uk-bg-f: oklch(95% 0 0); /* Bright glowing amber text */
 
     --uk-card: oklch(17% 0.04 28); /* Dark burnt-wood card */
-    --uk-card-f: oklch(94% 0.06 65);
+    --uk-card-f: oklch(95% 0 0);
 
     --uk-drop: oklch(20% 0.05 30); /* Smoldering ember dropdown */
-    --uk-drop-f: oklch(94% 0.06 65);
+    --uk-drop-f: oklch(95% 0 0);
 
     /* Radioactive Glowing Autumn Leaf */
     --uk-primary: oklch(
