@@ -29,7 +29,23 @@
                 height: 100%;
                 object-fit: cover;
             }
+
+            .uk-h1 {
+                font-family: "Open Sans", sans-serif;
+                font-optical-sizing: auto;
+                font-weight: <weight>;
+                font-style: normal;
+                font-variation-settings: "wdth" 100;
+            }
         </style>
+
+        <!-- open sans -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+            rel="stylesheet"
+        />
 
         <script
             src="https://cdn.jsdelivr.net/npm/frankenstyle@0.3.7/dist/js/hwc-core.iife.js"
@@ -50,11 +66,14 @@
                 "
             >
                 <div>
-                    <h1 class="uk-h1" style="margin: 0">Maple Times</h1>
+                    <h1 class="uk-h1" style="margin: 0; font-weight: bold">
+                        Maple Times
+                    </h1>
                     <p class="uk-p" style="margin: 0; max-width: 250px">
                         An <i><strong>Air Canada PTFS</strong></i> magazine
                         collection.
                     </p>
+                    <p style="font-size: 12px">-owned by milano150</p>
                 </div>
 
                 <img
@@ -153,47 +172,31 @@
 
                     magazines.forEach((magazine, index) => {
                         container.innerHTML += `
+                        <a href="./assets/example.pdf" target="_blank" style="text-decoration:none;">
                         <div
                             class="uk-card uk-card-body hover:shadow-lg cursor-pointer flex flex-col"
                             style="border: 0.5px solid var(--uk-border)"
-                            data-uk-toggle="target: #modal-${index}"
+                            href=""
                         >
-                            <div class="uk-modal" id="modal-${index}" data-uk-modal>
-                                <div
-                                    class="uk-modal-dialog uk-modal-body"
-                                    style="border: 0.5px solid var(--uk-border)"
-                                >
-                                    <h2 class="uk-h2">Read the Magazine</h2>
 
-                                    <button
-                                        class="uk-modal-close absolute right-4 top-4"
-                                        type="button"
-                                        data-uk-close
-                                    ></button>
-
-                                    <iframe
-                                        src="${magazine.pdf}"
-                                        class="w-full h-[80vh] mt-10"
-                                    ></iframe>
-                                </div>
-                            </div>
 
                             <div class="crop">
                                 <img src="${magazine.cover}" />
                             </div>
 
-                            <h1 class="uk-h1 text-left mt-5">
+                            <h1 class="uk-h1 text-left mt-5" style="font-weight: normal;">
                                 ${magazine.title}
                             </h1>
 
                             <h5 class="uk-h5" text-left mt-5>
-                                Issue #${magazine.issue}
+                                <i>Issue #${magazine.issue}</i>
                             </h5>
 
                             <p class="uk-p mt-2 text-right">
                                 ${magazine.description}
                             </p>
                         </div>
+                        </a>
                     `;
                     });
                 });
