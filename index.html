@@ -12,10 +12,7 @@
         />
 
         <link rel="stylesheet" href="" id="themes" />
-        <link
-            rel="stylesheet"
-            href="https://raw.githubusercontent.com/formalParrot/maple-times/refs/heads/main/assets/theme.css"
-        />
+
         <style>
             .crop {
                 width: 100%;
@@ -33,7 +30,7 @@
             .uk-h1 {
                 font-family: "Open Sans", sans-serif;
                 font-optical-sizing: auto;
-                font-weight: <weight>;
+                font-weight: bold;
                 font-style: normal;
                 font-variation-settings: "wdth" 100;
             }
@@ -110,26 +107,24 @@
 
             <div
                 id="magazines"
-                class="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-3 gap-4 pt-5"
+                class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-5"
             ></div>
         </div>
 
-        <div>
-            <script>
-                window.Lucide = {};
-                window.ApexCharts = {};
-            </script>
+        <script>
+            window.Lucide = {};
+            window.ApexCharts = {};
+        </script>
 
-            <script
-                src="https://cdn.jsdelivr.net/npm/frankenstyle@0.3.7/dist/js/hwc-icon.iife.js"
-                type="module"
-            ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/frankenstyle@0.3.7/dist/js/hwc-icon.iife.js"
+            type="module"
+        ></script>
 
-            <script
-                src="https://cdn.jsdelivr.net/npm/frankenstyle@0.3.7/dist/js/hwc-components.iife.js"
-                type="module"
-            ></script>
-        </div>
+        <script
+            src="https://cdn.jsdelivr.net/npm/frankenstyle@0.3.7/dist/js/hwc-components.iife.js"
+            type="module"
+        ></script>
 
         <!-- Theme Toggle -->
         <script>
@@ -152,53 +147,59 @@
             });
         </script>
 
-        <!-- css load script -->
+        <!-- CSS path -->
         <script>
             const link = document.getElementById("themes");
-
-            if (window.location.hostname.includes("github.io")) {
-                link.href = "/maple-times/assets/theme.css";
-            } else {
-                link.href = "./assets/theme.css";
-            }
+            link.href = window.location.hostname.includes("github.io")
+                ? "/maple-times/assets/theme.css"
+                : "./assets/theme.css";
         </script>
 
-        <!-- data load script -->
+        <!-- Magazine cards -->
         <script>
             fetch("assets/issues.json")
                 .then((res) => res.json())
                 .then((magazines) => {
                     const container = document.getElementById("magazines");
 
-                    magazines.forEach((magazine, index) => {
-                        container.innerHTML += `
-                        <a href="./assets/${magazine.pdf}" target="_blank" style="text-decoration:none;">
-                        <div
-                            class="uk-card uk-card-body hover:shadow-lg cursor-pointer flex flex-col"
-                            style="border: 0.5px solid var(--uk-border)"
-                            href=""
-                        >
+                    const html = magazines
+                        .map((magazine) => {
+                            const escape = (s) =>
+                                String(s).replace(
+                                    /[<>"'&]/g,
+                                    (c) =>
+                                        ({
+                                            "<": "&lt;",
+                                            ">": "&gt;",
+                                            '"': "&quot;",
+                                            "'": "&#39;",
+                                            "&": "&amp;",
+                                        })[c],
+                                );
 
-
-                            <div class="crop">
-                                <img src="${magazine.cover}" />
+                            return `<a href="./assets/${magazine.pdf}" target="_blank" style="text-decoration:none;">
+                            <div
+                                class="uk-card uk-card-body hover:shadow-lg cursor-pointer flex flex-col"
+                                style="border: 0.5px solid var(--uk-border)"
+                            >
+                                <div class="crop">
+                                    <img src="${magazine.cover}" alt="${escape(magazine.title)} cover" />
+                                </div>
+                                <h1 class="uk-h1 text-left mt-5" style="font-weight: normal;">
+                                    ${escape(magazine.title)}
+                                </h1>
+                                <h5 class="uk-h5 text-left mt-2">
+                                    <i>Issue #${magazine.issue}</i>
+                                </h5>
+                                <p class="uk-p mt-2 text-right">
+                                    ${escape(magazine.description)}
+                                </p>
                             </div>
+                        </a>`;
+                        })
+                        .join("");
 
-                            <h1 class="uk-h1 text-left mt-5" style="font-weight: normal;">
-                                ${magazine.title}
-                            </h1>
-
-                            <h5 class="uk-h5" text-left mt-5>
-                                <i>Issue #${magazine.issue}</i>
-                            </h5>
-
-                            <p class="uk-p mt-2 text-right">
-                                ${magazine.description}
-                            </p>
-                        </div>
-                        </a>
-                    `;
-                    });
+                    container.innerHTML = html;
                 });
         </script>
     </body>
