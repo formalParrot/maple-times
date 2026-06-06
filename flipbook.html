@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Flipbook</title>
+        <style>
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            :root {
+                --accent: #c8a96e;
+                --toolbar-bg: rgba(20, 20, 20, 0.92);
+                --toolbar-border: rgba(255, 255, 255, 0.08);
+                --text: #e8e8e8;
+                --text-muted: #888;
+            }
+
+            html,
+            body {
+                height: 100%;
+                background: #111;
+                overflow: hidden;
+                font-family:
+                    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+                color: var(--text);
+            }
+
+            #viewer-title {
+                position: fixed;
+                top: 18px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 100;
+                font-size: 13px;
+                color: var(--text-muted);
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                pointer-events: none;
+                white-space: nowrap;
+            }
+
+            #close-btn {
+                position: fixed;
+                top: 16px;
+                right: 16px;
+                z-index: 100;
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                background: rgba(0, 0, 0, 0.5);
+                color: var(--text);
+                font-size: 18px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            #close-btn:hover {
+                background: rgba(255, 255, 255, 0.15);
+            }
+
+            #stage {
+                position: fixed;
+                inset: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 60px 80px 80px;
+            }
+
+            /* StPageFlip container */
+            #flipbook-container {
+                position: relative;
+            }
+
+            /* toolbar */
+            #toolbar {
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 100;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                background: var(--toolbar-bg);
+                border: 1px solid var(--toolbar-border);
+                border-radius: 40px;
+                padding: 6px 12px;
+                backdrop-filter: blur(12px);
+                box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+                white-space: nowrap;
+            }
+            .tb-btn {
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                border: none;
+                background: transparent;
+                color: var(--text);
+                font-size: 18px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: background 0.15s;
+                flex-shrink: 0;
+            }
+            .tb-btn:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+            .tb-btn:disabled {
+                opacity: 0.3;
+                cursor: default;
+            }
+            .tb-btn:disabled:hover {
+                background: transparent;
+            }
+            .tb-divider {
+                width: 1px;
+                height: 20px;
+                background: var(--toolbar-border);
+                margin: 0 4px;
+                flex-shrink: 0;
+            }
+            #page-counter {
+                font-size: 12px;
+                color: var(--text-muted);
+                min-width: 80px;
+                text-align: center;
+            }
+            #page-counter b {
+                color: var(--accent);
+            }
+
+            .side-arrow {
+                position: fixed;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 50;
+                width: 44px;
+                height: 44px;
+                border-radius: 50%;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                background: rgba(0, 0, 0, 0.4);
+                color: var(--text);
+                font-size: 24px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0.5;
+                transition:
+                    opacity 0.2s,
+                    background 0.2s;
+            }
+            .side-arrow:hover {
+                opacity: 1;
+                background: rgba(255, 255, 255, 0.12);
+            }
+            .side-arrow:disabled {
+                opacity: 0.15;
+                cursor: default;
+            }
+            #arrow-left {
+                left: 16px;
+            }
+            #arrow-right {
+                right: 16px;
+            }
+
+            #loading {
+                position: fixed;
+                inset: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 16px;
+                background: #111;
+                z-index: 200;
+            }
+            .spinner {
+                width: 40px;
+                height: 40px;
+                border: 3px solid rgba(255, 255, 255, 0.1);
+                border-top-color: var(--accent);
+                border-radius: 50%;
+                animation: spin 0.8s linear infinite;
+            }
+            @keyframes spin {
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+            #loading p {
+                font-size: 13px;
+                color: var(--text-muted);
+            }
+            #load-pct {
+                font-size: 11px;
+                color: var(--text-muted);
+                opacity: 0.6;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="loading">
+            <div class="spinner"></div>
+            <p>Preparing magazine…</p>
+            <p id="load-pct"></p>
+        </div>
+
+        <div id="viewer-title"></div>
+        <button id="close-btn">✕</button>
+
+        <div id="stage">
+            <div id="flipbook-container"></div>
+        </div>
+
+        <button class="side-arrow" id="arrow-left">&#8249;</button>
+        <button class="side-arrow" id="arrow-right">&#8250;</button>
+
+        <div id="toolbar">
+            <button class="tb-btn" id="tb-prev">&#8592;</button>
+            <div class="tb-divider"></div>
+            <div id="page-counter">
+                <b id="pc-cur">—</b> / <span id="pc-tot">—</span>
+            </div>
+            <div class="tb-divider"></div>
+            <button class="tb-btn" id="tb-next">&#8594;</button>
+            <div class="tb-divider"></div>
+            <button class="tb-btn" id="tb-fs">&#x26F6;</button>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+        <script>
+            (function () {
+                pdfjsLib.GlobalWorkerOptions.workerSrc =
+                    "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js";
+
+                const params = new URLSearchParams(location.search);
+                const pdfPath = params.get("file") || "";
+                const title = params.get("title") || "Magazine";
+
+                document.getElementById("viewer-title").textContent = title;
+                document.title = title;
+
+                const loadingEl = document.getElementById("loading");
+                const loadPct = document.getElementById("load-pct");
+                const pcCur = document.getElementById("pc-cur");
+                const pcTot = document.getElementById("pc-tot");
+                const tbPrev = document.getElementById("tb-prev");
+                const tbNext = document.getElementById("tb-next");
+                const tbFs = document.getElementById("tb-fs");
+                const arrowL = document.getElementById("arrow-left");
+                const arrowR = document.getElementById("arrow-right");
+                const container = document.getElementById("flipbook-container");
+                const stage = document.getElementById("stage");
+
+                let pageFlip = null;
+                let numPages = 0;
+
+                // ── render all PDF pages to <img> data URLs, then init StPageFlip ──
+                async function init() {
+                    const loadingTask = pdfjsLib.getDocument(pdfPath);
+
+                    loadingTask.onProgress = ({ loaded, total }) => {
+                        if (total)
+                            loadPct.textContent =
+                                Math.round((loaded / total) * 100) + "%";
+                    };
+
+                    const pdf = await loadingTask.promise;
+                    numPages = pdf.numPages;
+                    pcTot.textContent = numPages;
+
+                    // figure out page size from page 1
+                    const firstPage = await pdf.getPage(1);
+                    const baseVP = firstPage.getViewport({ scale: 1 });
+                    const aspect = baseVP.height / baseVP.width;
+
+                    // fit to stage — two pages side by side
+                    const availW = stage.clientWidth - 160;
+                    const availH = stage.clientHeight - 20;
+                    const twoPageW = availW;
+                    const byWidth = twoPageW / 2;
+                    const byHeight = availH / aspect;
+                    const pageW = Math.floor(Math.min(byWidth, byHeight));
+                    const pageH = Math.floor(pageW * aspect);
+
+                    const scale =
+                        (pageW * window.devicePixelRatio) / baseVP.width;
+
+                    // render all pages off-screen to data URLs
+                    const dataURLs = [];
+                    for (let i = 1; i <= numPages; i++) {
+                        loadPct.textContent = `Rendering page ${i} of ${numPages}…`;
+                        const page = await pdf.getPage(i);
+                        const vp = page.getViewport({ scale });
+                        const canvas = document.createElement("canvas");
+                        canvas.width = Math.floor(vp.width);
+                        canvas.height = Math.floor(vp.height);
+                        const ctx = canvas.getContext("2d");
+                        ctx.fillStyle = "#fff";
+                        ctx.fillRect(0, 0, canvas.width, canvas.height);
+                        await page.render({ canvasContext: ctx, viewport: vp })
+                            .promise;
+                        dataURLs.push(canvas.toDataURL("image/jpeg", 0.92));
+                    }
+
+                    // build page elements for StPageFlip
+                    container.innerHTML = "";
+                    dataURLs.forEach((url) => {
+                        const div = document.createElement("div");
+                        div.className = "page";
+                        const img = document.createElement("img");
+                        img.src = url;
+                        img.style.cssText =
+                            "width:100%;height:100%;display:block;";
+                        div.appendChild(img);
+                        container.appendChild(div);
+                    });
+
+                    // init StPageFlip
+                    pageFlip = new St.PageFlip(container, {
+                        width: pageW,
+                        height: pageH,
+                        size: "fixed",
+                        drawShadow: true,
+                        flippingTime: 700,
+                        usePortrait: false,
+                        startZIndex: 0,
+                        autoSize: false,
+                        maxShadowOpacity: 0.5,
+                        showCover: true, // first page is a cover (single page)
+                        mobileScrollSupport: false,
+                    });
+
+                    pageFlip.loadFromHTML(container.querySelectorAll(".page"));
+
+                    pageFlip.on("flip", (e) => updateUI(e.data));
+                    pageFlip.on("changeState", () =>
+                        updateUI(pageFlip.getCurrentPageIndex()),
+                    );
+
+                    loadingEl.style.display = "none";
+                    updateUI(0);
+                }
+
+                function updateUI(pageIndex) {
+                    pcCur.textContent = pageIndex + 1;
+                    tbPrev.disabled = pageIndex === 0;
+                    arrowL.disabled = pageIndex === 0;
+                    tbNext.disabled = pageIndex >= numPages - 1;
+                    arrowR.disabled = pageIndex >= numPages - 1;
+                }
+
+                function prev() {
+                    pageFlip && pageFlip.flipPrev();
+                }
+                function next() {
+                    pageFlip && pageFlip.flipNext();
+                }
+
+                tbPrev.addEventListener("click", prev);
+                tbNext.addEventListener("click", next);
+                arrowL.addEventListener("click", prev);
+                arrowR.addEventListener("click", next);
+
+                document
+                    .getElementById("close-btn")
+                    .addEventListener("click", () => history.back());
+
+                tbFs.addEventListener("click", () => {
+                    if (!document.fullscreenElement)
+                        document.documentElement
+                            .requestFullscreen()
+                            .catch(() => {});
+                    else document.exitFullscreen();
+                });
+
+                document.addEventListener("keydown", (e) => {
+                    if (e.key === "ArrowLeft" || e.key === "PageUp") prev();
+                    if (e.key === "ArrowRight" || e.key === "PageDown") next();
+                    if (e.key === "Escape") history.back();
+                    if (e.key === "f" || e.key === "F") tbFs.click();
+                });
+
+                let tx0 = 0;
+                stage.addEventListener(
+                    "touchstart",
+                    (e) => {
+                        tx0 = e.touches[0].clientX;
+                    },
+                    { passive: true },
+                );
+                stage.addEventListener("touchend", (e) => {
+                    const dx = e.changedTouches[0].clientX - tx0;
+                    if (Math.abs(dx) > 60) dx < 0 ? next() : prev();
+                });
+
+                init().catch((err) => {
+                    loadPct.textContent = "Error: " + err.message;
+                    console.error(err);
+                });
+            })();
+        </script>
+    </body>
+</html>
