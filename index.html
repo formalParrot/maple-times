@@ -177,25 +177,27 @@
                                         })[c],
                                 );
 
-                            return `<a href="./assets/${magazine.pdf}" target="_blank" style="text-decoration:none;">
-                            <div
-                                class="uk-card uk-card-body hover:shadow-lg cursor-pointer flex flex-col"
-                                style="border: 0.5px solid var(--uk-border)"
-                            >
-                                <div class="crop">
-                                    <img src="${magazine.cover}" alt="${escape(magazine.title)} cover" />
+                            const viewerUrl = `./flipbook.html?file=${encodeURIComponent("assets/" + magazine.pdf)}&title=${encodeURIComponent(magazine.title)}`;
+
+                            return `<a href="${viewerUrl}" style="text-decoration:none;">
+                                <div
+                                    class="uk-card uk-card-body hover:shadow-lg cursor-pointer flex flex-col"
+                                    style="border: 0.5px solid var(--uk-border)"
+                                >
+                                    <div class="crop">
+                                        <img src="${magazine.cover}" alt="${escape(magazine.title)} cover" />
+                                    </div>
+                                    <h1 class="uk-h1 text-left mt-5" style="font-weight: normal;">
+                                        ${escape(magazine.title)}
+                                    </h1>
+                                    <h5 class="uk-h5 text-left mt-2">
+                                        <i>Issue #${magazine.issue}</i>
+                                    </h5>
+                                    <p class="uk-p mt-2 text-right">
+                                        ${escape(magazine.description)}
+                                    </p>
                                 </div>
-                                <h1 class="uk-h1 text-left mt-5" style="font-weight: normal;">
-                                    ${escape(magazine.title)}
-                                </h1>
-                                <h5 class="uk-h5 text-left mt-2">
-                                    <i>Issue #${magazine.issue}</i>
-                                </h5>
-                                <p class="uk-p mt-2 text-right">
-                                    ${escape(magazine.description)}
-                                </p>
-                            </div>
-                        </a>`;
+                            </a>`;
                         })
                         .join("");
 
